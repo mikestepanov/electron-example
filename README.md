@@ -1,19 +1,4 @@
-<p align="center"><img src="https://i.imgur.com/flcMvDC.png"></p>
-
-## Usage
-
-### Create an App
-
-```
-# with npx
-$ npx create-nextron-app my-app --example with-material-ui
-
-# with yarn
-$ yarn create nextron-app my-app --example with-material-ui
-
-# with pnpm
-$ pnpm dlx create-nextron-app my-app --example with-material-ui
-```
+1) I created a nextron app (Next.js + Electron.js) with MUI library as a starting set up
 
 ### Install Dependencies
 
