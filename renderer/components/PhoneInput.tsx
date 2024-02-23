@@ -5,7 +5,7 @@ import { phoneNumberAtom } from '../lib/jotai'
 import { useSetAtom } from 'jotai'
 import BasicInput from './BasicInput'
 
-const validPhoneRegex = /^(\d{3})\-(\d{3})\-(\d{4})$/g
+const validPhoneRegex = /^(\d{3})\-(\d{3})\-(\d{4})$/
 const MAX_PHONE_DIGIT_LENGTH = 10
 
 // Renders a phone number input field,
