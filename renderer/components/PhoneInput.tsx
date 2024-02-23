@@ -6,6 +6,7 @@ import { useSetAtom } from 'jotai'
 import BasicInput from './BasicInput'
 
 const validPhoneRegex = /^(\d{3})\-(\d{3})\-(\d{4})$/g
+const MAX_PHONE_DIGIT_LENGTH = 10
 
 // Renders a phone number input field,
 // when the user types in a valid phone number,
@@ -19,7 +20,7 @@ export default function PhoneInput() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value
     // Remove all non-digits
-    val = val.replace(/\D/g, '')
+    val = val.replace(/\D/g, '').substring(0, MAX_PHONE_DIGIT_LENGTH)
     // Add the hyphens
     if (val.length > 3) {
       val = val.replace(/(\d{3})/, '$1-')

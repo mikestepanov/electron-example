@@ -6,6 +6,7 @@ import PhoneInput from '../components/PhoneInput'
 import CentralWrapper from '../components/PhoneWrapper'
 import { useAtomValue } from 'jotai'
 import { phoneNumberAtom } from '../lib/jotai'
+import { ROUTES } from '../lib/Routes'
 
 export default function HomePage() {
   const phoneNumber = useAtomValue(phoneNumberAtom)
@@ -32,7 +33,7 @@ export default function HomePage() {
           variant="contained"
           disabled={phoneNumber == null}
           color="primary"
-          href="/verifyCode"
+          href={ROUTES.VERIFY_CODE}
         >
           Next
         </Button>

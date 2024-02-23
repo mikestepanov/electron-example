@@ -8,6 +8,7 @@ import { phoneNumberAtom } from '../lib/jotai'
 import { useAtomValue } from 'jotai'
 import BasicInput from '../components/BasicInput'
 import { useState } from 'react'
+import { ROUTES } from '../lib/Routes'
 
 const OTP_LENGTH = 6
 
@@ -40,6 +41,7 @@ export default function NextPage() {
           We sent you an SMS with the code
         </Typography>
         <BasicInput placeholder="Code" value={otp} onChange={handleOtpChange} />
+        {/*TODO - for testing to remove later */}
         <Typography gutterBottom>
           <Link href="/home">Go to the home page</Link>
         </Typography>
@@ -47,6 +49,7 @@ export default function NextPage() {
           variant="contained"
           disabled={otp.length !== OTP_LENGTH}
           color="primary"
+          href={ROUTES.NAME_INFO}
         >
           Next
         </Button>
