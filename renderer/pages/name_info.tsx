@@ -4,8 +4,13 @@ import Typography from '@mui/material/Typography'
 import Link from '../components/Link'
 import Image from 'next/image'
 import CentralWrapper from '../components/CentralWrapper'
-import { lastNameAtom, nameAtom, phoneNumberAtom } from '../lib/jotai'
-import { useAtom, useAtomValue } from 'jotai'
+import {
+  lastNameAtom,
+  nameAtom,
+  phoneNumberAtom,
+  userIDAtom,
+} from '../lib/jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import BasicInput from '../components/BasicInput'
 import { ROUTES } from '../lib/Routes'
 import { useContext, useState } from 'react'
@@ -21,6 +26,7 @@ export default function NameInfoPage() {
   const [name, setName] = useAtom(nameAtom)
   const [lastName, setLastName] = useAtom(lastNameAtom)
   const phoneNumber = useAtomValue(phoneNumberAtom)
+  const setUserID = useSetAtom(userIDAtom)
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -35,6 +41,7 @@ export default function NameInfoPage() {
   // when the user is created, the server will emit a 'newUserCrated' event
   // it will be the user id and will act as our 'auth token'
   socket?.on('newUserCrated', (userID: string) => {
+    setUserID(userID)
     setIsLoading(false)
     router.push(ROUTES.CONVERSATIONS)
   })

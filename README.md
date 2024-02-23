@@ -15,10 +15,15 @@
    - user first and last name should be more than 2 characters long
 6) based on the requirement, one conversation is sufficient
    - during the interview conversation we were talking about custom-based WebSocket application at Vama
-   - as a bonus I implemented a small harcoded WebSocket server with Socket.IO
-7) On last of the onboarding, the client will emit user data to the server
-   - In response, the server will emit new users ID, this will be our placebo 'auth token'
+   - since I was a bit rusty with websockets, I decided to add them here:
+   - as a bonus I implemented a small WebSocket server with Socket.IO
+7) On last page of the onboarding, the client will emit user data with `creatingNewUser` to the server:
+   - In response, the server will emit new users ID with `newUserCrated`, this will be our placebo 'auth token'
    - all messages from that user will be authored from that ID (aside from preestablished and convo ones)
+8) After the onboarding, the user is redirected to conversations page
+   - client emits `requestConversationsAndUsers`, loading mock starts
+   - server emits in response `recieveConversationsAndUsers`, sends all users and all conversations (in prod case it will be paginated but here it's just mock)
+   - in all users should be our current user as well
 
 ### Install Dependencies
 

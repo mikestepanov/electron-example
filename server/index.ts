@@ -29,15 +29,27 @@ const io = new Server(server, {
 io.on('connection', (socket: typeof Socket) => {
   console.log('a user connected from electron app')
   socket.emit('confirm', 'Hello from server')
+
+  socket.on('requestConversationsAndUsers', () => {
+    setTimeout(function () {
+      socket.emit('recieveConversationsAndUsers', {
+        users: mockUsers,
+        channels: mockChannels,
+      })
+      // mocks the server response time for 3 seconds
+    }, 500) //TODO
+  })
+
   socket.on('creatingNewUser', (newUser: any) => {
-    const newID = Math.floor(Math.random() * 100)
+    const newID = new Date().getTime()
     mockUsers[newID] = newUser
     setTimeout(function () {
       socket.emit('newUserCrated', newID)
       console.log('newUser', newUser)
-      // mocks the server response time for 5 seconds
-    }, 5000)
+      // mocks the server response time for 4 seconds
+    }, 500) //TODO
   })
+
   socket.on('disconnect', () => {
     console.log('user disconnected')
   })
