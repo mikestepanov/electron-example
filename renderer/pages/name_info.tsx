@@ -3,17 +3,21 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Link from '../components/Link'
 import Image from 'next/image'
-import CentralWrapper from '../components/PhoneWrapper'
+import CentralWrapper from '../components/CentralWrapper'
 import { lastNameAtom, nameAtom } from '../lib/jotai'
 import { useAtom } from 'jotai'
 import BasicInput from '../components/BasicInput'
+import { ROUTES } from '../lib/Routes'
 
 const MIN_NAME_LENGTH = 2
 
-export default function NextPage() {
+// Renders a page where the user is asked to enter their full name
+// this is last step of the sign up flow
+export default function NameInfoPage() {
   const [name, setName] = useAtom(nameAtom)
   const [lastName, setLastName] = useAtom(lastNameAtom)
 
+  // user can submit the form only if both name and last name are at least 2 characters long
   const canSubmit =
     name.length >= MIN_NAME_LENGTH && lastName.length >= MIN_NAME_LENGTH
 
@@ -52,6 +56,7 @@ export default function NextPage() {
           variant="contained"
           color="primary"
           disabled={canSubmit === false}
+          href={ROUTES.CONVERSATIONS}
         >
           Next
         </Button>

@@ -9,6 +9,7 @@ const Input = forwardRef(function CustomInput(
   return <BaseInput slots={{ input: InputElement }} {...props} ref={ref} />
 })
 
+// Renders a basic input field with MUI styling
 export default function BasicInput(props: InputProps) {
   return <Input {...props} />
 }
