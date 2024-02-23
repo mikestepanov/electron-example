@@ -4,10 +4,14 @@ import Typography from '@mui/material/Typography'
 import Link from '../components/Link'
 import Image from 'next/image'
 import CentralWrapper from '../components/CentralWrapper'
-import { lastNameAtom, nameAtom } from '../lib/jotai'
-import { useAtom } from 'jotai'
+import { lastNameAtom, nameAtom, phoneNumberAtom } from '../lib/jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import BasicInput from '../components/BasicInput'
 import { ROUTES } from '../lib/Routes'
+import { useContext, useState } from 'react'
+import { SocketContext } from '../contexts/socketContext'
+import { useRouter } from 'next/router'
+import { CircularProgress } from '@mui/material'
 
 const MIN_NAME_LENGTH = 2
 
@@ -16,10 +20,35 @@ const MIN_NAME_LENGTH = 2
 export default function NameInfoPage() {
   const [name, setName] = useAtom(nameAtom)
   const [lastName, setLastName] = useAtom(lastNameAtom)
+  const phoneNumber = useAtomValue(phoneNumberAtom)
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const router = useRouter()
 
   // user can submit the form only if both name and last name are at least 2 characters long
   const canSubmit =
     name.length >= MIN_NAME_LENGTH && lastName.length >= MIN_NAME_LENGTH
+
+  const socket = useContext(SocketContext)
+
+  // when the user is created, the server will emit a 'newUserCrated' event
+  // it will be the user id and will act as our 'auth token'
+  socket?.on('newUserCrated', (userID: string) => {
+    setIsLoading(false)
+    router.push(ROUTES.CONVERSATIONS)
+  })
+
+  // send the current user data to the server to create a new user
+  const handleCreateNewUser = () => {
+    const newUser = {
+      name,
+      lastName,
+      phoneNumber,
+    }
+    socket?.emit('creatingNewUser', newUser)
+    setIsLoading(true)
+  }
 
   return (
     <>
@@ -53,12 +82,15 @@ export default function NameInfoPage() {
           <Link href="/home">Go to the home page</Link>
         </Typography>
         <Button
+          startIcon={
+            isLoading ? <CircularProgress size={15} color="inherit" /> : null
+          }
           variant="contained"
           color="primary"
           disabled={canSubmit === false}
-          href={ROUTES.CONVERSATIONS}
+          onClick={handleCreateNewUser}
         >
-          Next
+          {isLoading ? 'Creating New User...' : 'Next'}
         </Button>
       </CentralWrapper>
     </>

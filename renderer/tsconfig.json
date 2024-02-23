@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../server/mockData.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "strict": true

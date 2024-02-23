@@ -6,6 +6,8 @@ import type { EmotionCache } from '@emotion/cache'
 import createEmotionCache from '../lib/create-emotion-cache'
 import { CacheProvider } from '@emotion/react'
 import { Provider } from 'jotai'
+import { io } from 'socket.io-client'
+import { SocketContext } from '../contexts/socketContext'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -15,6 +17,14 @@ type MyAppProps = AppProps & {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, pageProps, emotionCache = clientSideEmotionCache } = props
+
+  // Establish a socket connection with the server
+  // server/index.ts
+  const socket = io('ws://localhost:3333')
+
+  socket.on('confirm', (data) => {
+    console.log('connection from server established: ', data)
+  })
 
   return (
     <CacheProvider value={emotionCache}>
@@ -26,9 +36,11 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Provider>
-          <Component {...pageProps} />
-        </Provider>
+        <SocketContext.Provider value={socket}>
+          <Provider>
+            <Component {...pageProps} />
+          </Provider>
+        </SocketContext.Provider>
       </ThemeProvider>
     </CacheProvider>
   )
