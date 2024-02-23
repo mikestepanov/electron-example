@@ -13,6 +13,10 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    // as stand-in for white coor
+    warning: {
+      main: 'rgb(255, 255, 255)',
+    },
   },
 })
 

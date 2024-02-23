@@ -5,7 +5,13 @@ export type Message = {
   timestamp: string
 }
 
-export type Channel = { isGettingNewComment: boolean; messages: Array<Message> }
+export type Channel = {
+  isGettingNewComment: boolean
+  isMultiUser: boolean
+  name?: string
+  imageURL?: string
+  messages: Array<Message>
+}
 
 export type Channels = {
   [key: string]: Channel

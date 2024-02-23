@@ -13,9 +13,7 @@
    - a valid phone number, non-digits are automatically filtered, hyphens are automatically added
    - a valid 6-digit code, non-digits are automatically filtered
    - user first and last name should be more than 2 characters long
-6) based on the requirement, one conversation is sufficient
-   - during the interview conversation we were talking about custom-based WebSocket application at Vama
-   - since I was a bit rusty with websockets, I decided to add them here:
+6) during the interview conversation we were talking about custom-based WebSocket application at Vama
    - as a bonus I implemented a small WebSocket server with Socket.IO
 7) On last page of the onboarding, the client will emit user data with `creatingNewUser` to the server:
    - In response, the server will emit new users ID with `newUserCrated`, this will be our placebo 'auth token'
@@ -24,6 +22,19 @@
    - client emits `requestConversationsAndUsers`, loading mock starts
    - server emits in response `recieveConversationsAndUsers`, sends all users and all conversations (in prod case it will be paginated but here it's just mock)
    - in all users should be our current user as well
+9) In the example the first conversation (a conversation with character Vegeta):
+   - 0th messaged comes from Vegeta (to show chat activity)
+   - A chat is automatically created with an imaginary user.
+   - When user sends the first message, it comes from the user.
+   - When user sends the second message, it comes from Vegeta
+   - Third messaged is authored from the user
+   - Forth is form Vegeta, and so on...
+   - The preview cell in the sidebar is updated properly
+     - If last message is from the user, 'You: ' is appended to the message preview
+10) as a bonus, I added multi user view in the second conversation, similar to single user chat with minor changes
+
+- Character's first name is apppended to the message preview
+- the chat has it's own name and icon that is unchanging
 
 ### Install Dependencies
 

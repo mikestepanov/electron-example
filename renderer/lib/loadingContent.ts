@@ -7,6 +7,7 @@ export const loadingChannels: Channels = {}
 Array.from({ length: 10 }).forEach((_, i) => {
   loadingChannels[i] = {
     isGettingNewComment: false,
+    isMultiUser: false,
     messages: [
       {
         message: i.toString(),

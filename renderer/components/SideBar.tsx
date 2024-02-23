@@ -4,12 +4,10 @@ import { useAtom } from 'jotai'
 import { Channels } from '../lib/types'
 import SideBarItem from './SideBarItem'
 import EditSection from './EditSection'
-import { Skeleton } from '@mui/material'
 import { grey } from '@mui/material/colors'
 
 type Props = {
   channels: Channels
-  children: React.ReactNode
   isLoading: boolean
 }
 
@@ -24,7 +22,7 @@ export default function SideBar(props: Props) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        width: '360px',
+        minWidth: 360,
         backgroundColor: grey[400],
       }}
     >

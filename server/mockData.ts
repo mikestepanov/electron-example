@@ -28,14 +28,8 @@ exports.mockUsers = {
 exports.mockChannels = {
   '2000': {
     isGettingNewComment: false,
+    isMultiUser: false,
     messages: [
-      {
-        id: '2001',
-        userID: '123',
-        message:
-          'Greetings, traveler. Upon the scale of endurance from 1 to 10, what resonance fills your soul?',
-        timestamp: '2024-02-23T08:00:00Z',
-      },
       {
         id: '2002',
         userID: '124',
@@ -46,7 +40,17 @@ exports.mockChannels = {
   },
   '3000': {
     isGettingNewComment: false,
+    isMultiUser: true,
+    name: "Gwyn's Chill Chat",
+    imageURL: '/images/frost.jpg',
     messages: [
+      {
+        id: '2999',
+        userID: '123',
+        message:
+          'Greetings, traveler. Upon the scale of endurance from 1 to 10, what resonance fills your soul?',
+        timestamp: '2024-02-23T08:00:00Z',
+      },
       {
         id: '3001',
         userID: '125',

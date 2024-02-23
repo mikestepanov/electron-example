@@ -6,7 +6,6 @@ import ConversationChat from '../components/ConversationChat'
 import { Box } from '@mui/system'
 import { SocketContext } from '../contexts/socketContext'
 import { useContext, useEffect, useState } from 'react'
-import EditSection from '../components/EditSection'
 import { Channels, Users } from '../lib/types'
 import { useAtom } from 'jotai'
 import { selectedChannelIDAtom, usersAtom } from '../lib/jotai'
@@ -23,13 +22,17 @@ export default function Conversations() {
   const [selectedChannelID, setSelectedChannelID] = useAtom(
     selectedChannelIDAtom
   )
+  const selectedChannel =
+    selectedChannelID != null && channels[selectedChannelID]
+      ? channels[selectedChannelID]
+      : loadingChannels[0]
 
   // when the server sends the conversations and users, we set them in the state
   socket?.on(
     'recieveConversationsAndUsers',
     ({ users, channels }: { users: Users; channels: Channels }) => {
       // default first channel to be selected
-      setSelectedChannelID(Object.keys(channels)[1])
+      setSelectedChannelID(Object.keys(channels)[0])
       setUsers(users)
       setChannels(channels)
       setIsLoading(false)
@@ -65,12 +68,8 @@ export default function Conversations() {
         <SideBar
           channels={isLoading ? loadingChannels : channels}
           isLoading={isLoading}
-        >
-          <EditSection />
-        </SideBar>
-        <ConversationChat>
-          <h1>chat</h1>
-        </ConversationChat>
+        />
+        <ConversationChat channel={selectedChannel} isLoading={isLoading} />
       </Box>
     </>
   )

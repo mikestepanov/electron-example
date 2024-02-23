@@ -4,7 +4,7 @@ import ListItemText from '@mui/material/ListItemText'
 import { Avatar, Box, Skeleton, Typography } from '@mui/material'
 import { Channel } from '../lib/types'
 import { useAtomValue } from 'jotai'
-import { usersAtom } from '../lib/jotai'
+import { userIDAtom, usersAtom } from '../lib/jotai'
 import { convertToAMPM } from '../utils/conversions'
 import { blue, grey } from '@mui/material/colors'
 
@@ -15,12 +15,24 @@ type Props = {
   isLoading: boolean
 }
 
+// Renders a single item in the sidebar
+// that shows the last message in the channel
 export default function SideBarItem(props: Props) {
+  const currenUserID = useAtomValue(userIDAtom)
   const users = useAtomValue(usersAtom)
 
   const latestMessage =
     props.channel.messages[props.channel.messages.length - 1]
   const messageAuthor = users[latestMessage.userID]
+
+  let message = latestMessage.message
+  // if the latest message is from the current user, append "You" to the message
+  if (latestMessage.userID === currenUserID) {
+    message = 'You: ' + message
+    // in multi user channels, append the author's name to the message
+  } else if (props.channel.isMultiUser) {
+    message = messageAuthor.name + ': ' + message
+  }
 
   console.log(latestMessage, props.isSelected)
   return (
@@ -34,7 +46,7 @@ export default function SideBarItem(props: Props) {
           {props.isLoading ? (
             <Skeleton variant="circular" width={40} height={40} />
           ) : (
-            <Avatar src={messageAuthor.imageURL} />
+            <Avatar src={props.channel.imageURL || messageAuthor.imageURL} />
           )}
         </ListItemIcon>
         {props.isLoading ? (
@@ -44,11 +56,14 @@ export default function SideBarItem(props: Props) {
           </Box>
         ) : (
           <ListItemText
-            primary={messageAuthor.name + ' ' + messageAuthor.lastName}
+            primary={
+              props.channel.name ||
+              messageAuthor.name + ' ' + messageAuthor.lastName
+            }
             primaryTypographyProps={{
               color: props.isSelected ? 'white' : 'black',
             }}
-            secondary={latestMessage.message}
+            secondary={message}
             secondaryTypographyProps={{
               color: props.isSelected ? 'white' : 'black',
             }}
