@@ -1,4 +1,5 @@
-1) I created a nextron app (Next.js + Electron.js) with MUI library as a starting set up
+1. I created a nextron app (Electron.js with integrated Next.js) with MUI library as a starting set up
+2. Added Jotai for state management
 
 ### Install Dependencies
 

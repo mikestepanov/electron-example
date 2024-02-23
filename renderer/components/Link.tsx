@@ -1,13 +1,13 @@
-import React from 'react'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
+import { forwardRef } from 'react'
 
 type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   NextLinkProps
 
-const NextComposed = React.forwardRef(function NextComposed(
+const NextComposed = forwardRef(function NextComposed(
   props: NextComposedProps,
   ref: React.Ref<HTMLAnchorElement>
 ) {
@@ -68,6 +68,6 @@ function Link(props: LinkProps) {
 }
 
 // eslint-disable-next-line react/display-name
-export default React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
+export default forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
   <Link {...props} innerRef={ref} />
 ))

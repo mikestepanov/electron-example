@@ -1,37 +1,18 @@
 import { Box, styled } from '@mui/system'
-import { Button } from '@mui/base/Button'
-import { Input as BaseInput, InputProps, inputClasses } from '@mui/base/Input'
-import { forwardRef, useState } from 'react'
-
-const Input = forwardRef(function CustomInput(
-  props: InputProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
-  const { slots, ...other } = props
-  return (
-    <BaseInput
-      slots={{
-        root: InputRoot,
-        input: InputElement,
-        ...slots,
-      }}
-      {...other}
-      ref={ref}
-    />
-  )
-})
+import { inputClasses } from '@mui/base/Input'
+import { useState } from 'react'
+import { phoneNumberAtom } from '../lib/jotai'
+import { useSetAtom } from 'jotai'
+import BasicInput from './BasicInput'
 
 const validPhoneRegex = /^(\d{3})\-(\d{3})\-(\d{4})$/g
-
-type Props = {
-  onPhoneNumberChange: (phoneNumber: string | null) => void
-}
 
 // Renders a phone number input field,
 // when the user types in a valid phone number,
 // sends it to the parent component
-export default function PhoneInput(props: Props) {
+export default function PhoneInput() {
   const [value, setValue] = useState('')
+  const setPhoneNumber = useSetAtom(phoneNumberAtom)
 
   // parse phone number and add hyphens,
   // if we have valid phone number, send it to parent component
@@ -48,12 +29,16 @@ export default function PhoneInput(props: Props) {
     }
     setValue(val)
     // if we have valid phone number, we can unblock 'Next' button
-    props.onPhoneNumberChange(validPhoneRegex.test(val) ? val : null)
+    setPhoneNumber(validPhoneRegex.test(val) ? val : null)
   }
 
   return (
     <Box sx={{ margin: '20px 0' }}>
-      <Input
+      <BasicInput
+        slots={{
+          root: InputRoot,
+          input: InputElement,
+        }}
         placeholder="Phone Number"
         value={value}
         onChange={handleInputChange}

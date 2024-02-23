@@ -1,4 +1,3 @@
-import React from 'react'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { CssBaseline, ThemeProvider } from '@mui/material'
@@ -6,6 +5,7 @@ import theme from '../lib/theme'
 import type { EmotionCache } from '@emotion/cache'
 import createEmotionCache from '../lib/create-emotion-cache'
 import { CacheProvider } from '@emotion/react'
+import { Provider } from 'jotai'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -26,7 +26,9 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Provider>
+          <Component {...pageProps} />
+        </Provider>
       </ThemeProvider>
     </CacheProvider>
   )

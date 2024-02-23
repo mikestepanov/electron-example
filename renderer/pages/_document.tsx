@@ -1,4 +1,3 @@
-import React from 'react'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import theme from '../lib/theme'
 import createEmotionCache from '../lib/create-emotion-cache'
