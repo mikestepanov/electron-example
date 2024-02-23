@@ -47,9 +47,17 @@ export default function EditSection() {
           </Button>
         </DialogActions>
       </Dialog>
-      <Fab color="secondary" aria-label="edit" onClick={handleOpen}>
-        <EditIcon />
-      </Fab>
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: '20px',
+          left: '280px',
+        }}
+      >
+        <Fab color="secondary" aria-label="edit" onClick={handleOpen}>
+          <EditIcon />
+        </Fab>
+      </Box>
     </>
   )
 }
