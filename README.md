@@ -15,13 +15,14 @@
    - user first and last name should be more than 2 characters long
 6) during the interview conversation we were talking about custom-based WebSocket application at Vama
    - as a bonus I implemented a small WebSocket server with Socket.IO
+   - for simplicity, the user is automatically subscribed to all conversations and no pagination logic is set
 7) On last page of the onboarding, the client will emit user data with `creatingNewUser` to the server:
    - In response, the server will emit new users ID with `newUserCrated`, this will be our placebo 'auth token'
    - all messages from that user will be authored from that ID (aside from preestablished and convo ones)
 8) After the onboarding, the user is redirected to conversations page
    - client emits `requestConversationsAndUsers`, loading mock starts
-   - server emits in response `recieveConversationsAndUsers`, sends all users and all conversations (in prod case it will be paginated but here it's just mock)
-   - in all users should be our current user as well
+   - server emits in response `recieveConversationsAndUsers`, sends all users and all conversations
+   - in the users array there should be our current user as well
 9) In the example the first conversation (a conversation with character Vegeta):
    - 0th messaged comes from Vegeta (to show chat activity)
    - A chat is automatically created with an imaginary user.
@@ -31,10 +32,11 @@
    - Forth is form Vegeta, and so on...
    - The preview cell in the sidebar is updated properly
      - If last message is from the user, 'You: ' is appended to the message preview
+     - the chat has DMed user image and name and is unchanging
 10) as a bonus, I added multi user view in the second conversation, similar to single user chat with minor changes
 
 - Character's first name is apppended to the message preview
-- the chat has it's own name and icon that is unchanging
+- in the conversation view, non-current user's messages show name and image
 
 ### Install Dependencies
 

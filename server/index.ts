@@ -50,6 +50,20 @@ io.on('connection', (socket: typeof Socket) => {
     }, 500) //TODO
   })
 
+  socket.on('sendMessage', (response: any) => {
+    const { userID, channelID, content } = response
+    mockChannels[channelID].messages.push({
+      id: new Date().getTime().toString(),
+      userID,
+      content,
+      timestamp: new Date().toISOString(),
+    })
+    setTimeout(function () {
+      socket.emit('channelUpdate', channelID, mockChannels[channelID])
+      // mocks the server response time for 2 seconds
+    }, 500) //TODO
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected')
   })

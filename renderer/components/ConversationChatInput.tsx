@@ -4,6 +4,8 @@ import Box from '@mui/material/Box'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { blue } from '@mui/material/colors'
 import { Fab } from '@mui/material'
+import { useState } from 'react'
+import { send } from 'process'
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -30,11 +32,30 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   },
 }))
 
-export default function ConversationChatInput() {
+type Props = {
+  onTyping: (isTyping: boolean) => void
+  onSendMessage: (message: string) => void
+  isLoading: boolean
+}
+
+// Renders the input fields below list of messages in conversation section
+export default function ConversationChatInput(props: Props) {
+  const [value, setValue] = useState('')
+
+  const sendMessage = () => {
+    props.onSendMessage(value)
+    setValue('')
+  }
+
   return (
     <Box
       component="form"
-      noValidate
+      onSubmit={(e) => {
+        e.preventDefault()
+        if (value !== '') {
+          sendMessage()
+        }
+      }}
       sx={{
         display: 'flex',
         alignItems: 'center',
@@ -45,8 +66,13 @@ export default function ConversationChatInput() {
     >
       <BootstrapInput
         sx={{ width: 'inherit' }}
-        id="bootstrap-input"
         placeholder="Message"
+        value={value}
+        onChange={(e) => {
+          const val = e.target.value
+          props.onTyping(val !== '')
+          setValue(val)
+        }}
       />
       <Box sx={{ width: 40 }}>
         <Fab
@@ -58,6 +84,8 @@ export default function ConversationChatInput() {
             height: 36,
             marginLeft: 4,
           }}
+          disabled={value === '' || props.isLoading}
+          onClick={() => sendMessage()}
         >
           <ArrowUpwardIcon color="warning" />
         </Fab>

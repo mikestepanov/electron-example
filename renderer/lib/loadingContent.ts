@@ -6,11 +6,13 @@ export const loadingChannels: Channels = {}
 // fon loading state
 Array.from({ length: 10 }).forEach((_, i) => {
   loadingChannels[i] = {
-    isGettingNewComment: false,
+    isInDraft: false,
     isMultiUser: false,
+    name: i.toString(),
+    imageURL: i.toString(),
     messages: [
       {
-        message: i.toString(),
+        content: i.toString(),
         userID: i.toString(),
         id: i.toString(),
         timestamp: i.toString(),

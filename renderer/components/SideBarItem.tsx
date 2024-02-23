@@ -25,7 +25,7 @@ export default function SideBarItem(props: Props) {
     props.channel.messages[props.channel.messages.length - 1]
   const messageAuthor = users[latestMessage.userID]
 
-  let message = latestMessage.message
+  let message = latestMessage.content
   // if the latest message is from the current user, append "You" to the message
   if (latestMessage.userID === currenUserID) {
     message = 'You: ' + message
@@ -34,7 +34,6 @@ export default function SideBarItem(props: Props) {
     message = messageAuthor.name + ': ' + message
   }
 
-  console.log(latestMessage, props.isSelected)
   return (
     <Box
       sx={{
@@ -46,7 +45,7 @@ export default function SideBarItem(props: Props) {
           {props.isLoading ? (
             <Skeleton variant="circular" width={40} height={40} />
           ) : (
-            <Avatar src={props.channel.imageURL || messageAuthor.imageURL} />
+            <Avatar src={props.channel.imageURL} />
           )}
         </ListItemIcon>
         {props.isLoading ? (
@@ -56,10 +55,7 @@ export default function SideBarItem(props: Props) {
           </Box>
         ) : (
           <ListItemText
-            primary={
-              props.channel.name ||
-              messageAuthor.name + ' ' + messageAuthor.lastName
-            }
+            primary={props.channel.name}
             primaryTypographyProps={{
               color: props.isSelected ? 'white' : 'black',
             }}

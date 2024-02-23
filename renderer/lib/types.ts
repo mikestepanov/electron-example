@@ -1,15 +1,15 @@
 export type Message = {
   id: string
   userID: string
-  message: string
+  content: string
   timestamp: string
 }
 
 export type Channel = {
-  isGettingNewComment: boolean
+  isInDraft: boolean
   isMultiUser: boolean
-  name?: string
-  imageURL?: string
+  name: string
+  imageURL: string
   messages: Array<Message>
 }
 

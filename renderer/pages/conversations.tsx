@@ -6,7 +6,7 @@ import ConversationChat from '../components/ConversationChat'
 import { Box } from '@mui/system'
 import { SocketContext } from '../contexts/socketContext'
 import { useContext, useEffect, useState } from 'react'
-import { Channels, Users } from '../lib/types'
+import { Channel, Channels, Users } from '../lib/types'
 import { useAtom } from 'jotai'
 import { selectedChannelIDAtom, usersAtom } from '../lib/jotai'
 import { loadingChannels } from '../lib/loadingContent'
@@ -38,6 +38,11 @@ export default function Conversations() {
       setIsLoading(false)
     }
   )
+
+  // when the server sends a new message, we update the channel in the state
+  socket?.on('channelUpdate', (channelID: string, channel: Channel) => {
+    setChannels((prevChannels) => ({ ...prevChannels, [channelID]: channel }))
+  })
 
   // request the conversations and users from the server
   useEffect(() => {

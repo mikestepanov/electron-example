@@ -1,7 +1,12 @@
 import { Box } from '@mui/system'
 import { Channel } from '../lib/types'
-import { Skeleton, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import ConversationChatInput from './ConversationChatInput'
+import { SocketContext } from '../contexts/socketContext'
+import { useContext } from 'react'
+import { useAtomValue } from 'jotai'
+import { selectedChannelIDAtom, userIDAtom } from '../lib/jotai'
+import ChatTextbox from './ChatTextbox'
 
 type Props = {
   channel: Channel
@@ -11,6 +16,19 @@ type Props = {
 // Renders the main chat area for a conversation,
 // right of the sidebar
 export default function ConversationChat(props: Props) {
+  const selectedChannelID = useAtomValue(selectedChannelIDAtom)
+  const userID = useAtomValue(userIDAtom)
+  const socket = useContext(SocketContext)
+
+  // sends a message to the server to the selected channel
+  const handleSendMessage = (content: string) => {
+    socket?.emit('sendMessage', {
+      userID: userID,
+      channelID: selectedChannelID,
+      content,
+    })
+  }
+
   return (
     <Box
       sx={{
@@ -24,19 +42,23 @@ export default function ConversationChat(props: Props) {
         {props.channel.messages.map((message, index) => {
           return (
             <Box key={index}>
-              {props.isLoading ? (
-                <Skeleton variant="rectangular" width={210} height={60} />
-              ) : (
-                <Typography>{message.message}</Typography>
-              )}
+              <ChatTextbox
+                message={message}
+                isFromCurrentUser={message.userID === userID}
+                isLoading={props.isLoading}
+              />
             </Box>
           )
         })}
-        {props.channel.isGettingNewComment && (
+        {props.channel.isInDraft && (
           <Typography>Loading new message...</Typography>
         )}
       </Box>
-      <ConversationChatInput />
+      <ConversationChatInput
+        isLoading={props.isLoading}
+        onTyping={() => {}}
+        onSendMessage={handleSendMessage}
+      />
     </Box>
   )
 }
