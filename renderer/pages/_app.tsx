@@ -11,6 +11,9 @@ import { SocketContext } from '../contexts/socketContext'
 
 const clientSideEmotionCache = createEmotionCache()
 
+// 3 dots css animation from https://codepen.io/nzbin/pen/GGrXbp
+import './3dots.css'
+
 type MyAppProps = AppProps & {
   emotionCache?: EmotionCache
 }

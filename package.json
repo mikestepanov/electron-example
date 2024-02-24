@@ -1,9 +1,9 @@
 {
   "private": true,
   "name": "my-nextron-app",
-  "description": "My application description",
+  "description": "Electron app with Next.js, MUI and Socket.IO integration",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "Mikhail Stepanov <mikestepanov777@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "concurrently \"npm run node-server\" \"npm run watch-client\"",

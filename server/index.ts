@@ -77,7 +77,26 @@ io.on('connection', (socket: typeof Socket) => {
     }, 500) //TODO
   })
 
+  // client can mark convsersation as in draft to the server
+  // emit back the updated channel with draft toggle on or off
+  socket.on('isDrafting', (response: any) => {
+    const { channelID, isInDraft } = response
+    console.log('response', response)
+
+    const mockChannel = mockChannels[channelID]
+    mockChannel.isInDraft = isInDraft
+    setTimeout(function () {
+      socket.emit('channelUpdate', channelID, mockChannel)
+      // mocks the server response time for 2 seconds
+    }, 500) //TODO
+  })
+
   socket.on('disconnect', () => {
+    // on disconnect, close all drafts
+    Object.keys(mockChannels).forEach((channelID) => {
+      const mockChannel = mockChannels[channelID]
+      mockChannel.isInDraft = false
+    })
     console.log('user disconnected')
   })
 })

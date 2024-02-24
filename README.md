@@ -33,10 +33,13 @@
    - The preview cell in the sidebar is updated properly
      - If last message is from the user, 'You: ' is appended to the message preview
      - the chat has DMed user image and name and is unchanging
-10) as a bonus, I added multi user view in the second conversation, similar to single user chat with minor changes
+10) user sends a message by emitting `sendMessage`, the server responds with updated conversation back via `channelUpdate`
+11) user can send `isDrafting` when typing into the message input, the server responds with `channelUpdate`, labeling the conversation as in draft mode
+    - this will show loading (`...`) logic on client
 
-- Character's first name is apppended to the message preview
-- in the conversation view, non-current user's messages show name and image
+12. as a bonus, I added multi user view in the second conversation, similar to single user chat with minor changes
+    - Character's first name is apppended to the message preview
+    - in the conversation view, non-current user's messages show name and image
 
 ### Install Dependencies
 
