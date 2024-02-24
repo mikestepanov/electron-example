@@ -1,9 +1,10 @@
-import { Box } from '@mui/system'
-import { Channel } from '../lib/types'
 import { Avatar, Skeleton, Typography } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { lastNameAtom, nameAtom } from '../lib/jotai'
+import { Box } from '@mui/system'
 import { useAtomValue } from 'jotai'
+
+import { lastNameAtom, nameAtom } from 'lib/jotai'
+import { Channel } from 'lib/types'
 
 type Props = {
   channel: Channel
@@ -57,7 +58,7 @@ export default function ConversationHeader(props: Props) {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          marginRight: '30px',
+          marginRight: '24px',
         }}
       >
         {props.isLoading ? (

@@ -1,10 +1,12 @@
 import { Box } from '@mui/system'
-import { Channel } from '../lib/types'
 import { useAtomValue } from 'jotai'
-import { userIDAtom } from '../lib/jotai'
-import ChatTextbox from './ChatTextbox'
-import SomeoneIsTyping from './SomeoneIsTyping'
 import { useEffect, useRef } from 'react'
+
+import ChatTextbox from 'components/ChatTextbox'
+import SomeoneIsTyping from 'components/SomeoneIsTyping'
+
+import { userIDAtom } from 'lib/jotai'
+import { Channel } from 'lib/types'
 
 type Props = {
   channel: Channel

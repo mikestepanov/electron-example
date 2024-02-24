@@ -4,7 +4,7 @@ import { forwardRef } from 'react'
 
 const Input = forwardRef(function CustomInput(
   props: InputProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return <BaseInput slots={{ input: InputElement }} {...props} ref={ref} />
 })
@@ -66,5 +66,5 @@ const InputElement = styled('input')(
   &:focus-visible {
     outline: 0;
   }
-`
+`,
 )

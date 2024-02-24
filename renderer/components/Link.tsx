@@ -1,7 +1,7 @@
-import clsx from 'clsx'
-import { useRouter } from 'next/router'
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
+import clsx from 'clsx'
+import NextLink, { LinkProps as NextLinkProps } from 'next/link'
+import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
 
 type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
@@ -9,7 +9,7 @@ type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
 
 const NextComposed = forwardRef(function NextComposed(
   props: NextComposedProps,
-  ref: React.Ref<HTMLAnchorElement>
+  ref: React.Ref<HTMLAnchorElement>,
 ) {
   const { as, href, ...other } = props
 
@@ -28,6 +28,8 @@ interface LinkPropsBase {
 
 type LinkProps = LinkPropsBase & NextComposedProps & Omit<MuiLinkProps, 'ref'>
 
+// this is a custom link component that uses the next/link component
+// with the material ui link component
 function Link(props: LinkProps) {
   const {
     href,

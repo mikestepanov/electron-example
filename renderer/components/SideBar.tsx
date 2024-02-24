@@ -1,10 +1,12 @@
 import Box from '@mui/material/Box'
-import { selectedChannelIDAtom } from '../lib/jotai'
-import { useAtom } from 'jotai'
-import { Channels } from '../lib/types'
-import SideBarItem from './SideBarItem'
-import EditSection from './EditSection'
 import { grey } from '@mui/material/colors'
+import { useAtom } from 'jotai'
+
+import EditSection from 'components/EditSection'
+import SideBarItem from 'components/SideBarItem'
+
+import { selectedChannelIDAtom } from 'lib/jotai'
+import { Channels } from 'lib/types'
 
 type Props = {
   channels: Channels
@@ -14,7 +16,7 @@ type Props = {
 // Renders a sidebar for the conversation page
 export default function SideBar(props: Props) {
   const [selectedChannelID, setSelectedChannelID] = useAtom(
-    selectedChannelIDAtom
+    selectedChannelIDAtom,
   )
 
   return (

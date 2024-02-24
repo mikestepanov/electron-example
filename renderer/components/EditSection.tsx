@@ -1,5 +1,4 @@
-import { Box } from '@mui/system'
-import { useState } from 'react'
+import EditIcon from '@mui/icons-material/Edit'
 import {
   Button,
   Dialog,
@@ -9,9 +8,10 @@ import {
   DialogTitle,
   Fab,
 } from '@mui/material'
-import Image from 'next/image'
-import EditIcon from '@mui/icons-material/Edit'
 import { blue } from '@mui/material/colors'
+import { Box } from '@mui/system'
+import Image from 'next/image'
+import { useState } from 'react'
 
 // In the future we could add or edit conversations here
 export default function EditSection() {

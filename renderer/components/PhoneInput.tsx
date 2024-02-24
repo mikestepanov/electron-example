@@ -1,9 +1,11 @@
-import { Box, styled } from '@mui/system'
 import { inputClasses } from '@mui/base/Input'
-import { useState } from 'react'
-import { phoneNumberAtom } from '../lib/jotai'
+import { Box, styled } from '@mui/system'
 import { useSetAtom } from 'jotai'
-import BasicInput from './BasicInput'
+import { useState } from 'react'
+
+import BasicInput from 'components/BasicInput'
+
+import { phoneNumberAtom } from 'lib/jotai'
 
 const validPhoneRegex = /^(\d{3})\-(\d{3})\-(\d{4})$/
 const MAX_PHONE_DIGIT_LENGTH = 10
@@ -102,7 +104,7 @@ const InputRoot = styled('div')(
   &:focus-visible {
     outline: 0;
   }
-`
+`,
 )
 
 const InputElement = styled('input')(
@@ -118,7 +120,7 @@ const InputElement = styled('input')(
   border-radius: inherit;
   padding: 8px 12px;
   outline: 0;
-`
+`,
 )
 
 const InputAdornment = styled('div')`

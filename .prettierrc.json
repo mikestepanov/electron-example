@@ -6,5 +6,14 @@
   "importOrderSortSpecifiers": true,
   "importOrderCaseInsensitive": true,
   "bracketSameLine": false,
-  "semi": false
+  "semi": false,
+  "importOrder": [
+    "^pages/(.*)$",
+    "^components/(.*)$",
+    "^contexts/(.*)$",
+    "^lib/(.*)$",
+    "^utils/(.*)$",
+    "^[./]"
+  ],
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

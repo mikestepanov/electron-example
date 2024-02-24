@@ -1,12 +1,14 @@
+import { Avatar, Box, Skeleton, Typography } from '@mui/material'
+import { blue, grey } from '@mui/material/colors'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { Avatar, Box, Skeleton, Typography } from '@mui/material'
-import { Channel } from '../lib/types'
 import { useAtomValue } from 'jotai'
-import { userIDAtom, usersAtom } from '../lib/jotai'
-import { convertToAMPM } from '../utils/conversions'
-import { blue, grey } from '@mui/material/colors'
+
+import { userIDAtom, usersAtom } from 'lib/jotai'
+import { Channel } from 'lib/types'
+
+import { convertToAMPM } from 'utils/conversions'
 
 type Props = {
   channel: Channel

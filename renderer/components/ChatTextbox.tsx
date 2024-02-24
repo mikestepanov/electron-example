@@ -1,10 +1,12 @@
-import { Box } from '@mui/system'
-import { Message } from '../lib/types'
 import { Avatar, Typography } from '@mui/material'
 import { blue, grey } from '@mui/material/colors'
-import { convertToAMPM } from '../utils/conversions'
+import { Box } from '@mui/system'
 import { useAtomValue } from 'jotai'
-import { usersAtom } from '../lib/jotai'
+
+import { usersAtom } from 'lib/jotai'
+import { Message } from 'lib/types'
+
+import { convertToAMPM } from 'utils/conversions'
 
 type Props = {
   message: Message

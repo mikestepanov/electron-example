@@ -1,14 +1,17 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import PhoneInput from '../components/PhoneInput'
-import CentralWrapper from '../components/CentralWrapper'
 import { useAtomValue } from 'jotai'
-import { phoneNumberAtom } from '../lib/jotai'
-import { ROUTES } from '../lib/Routes'
+import Head from 'next/head'
+import Image from 'next/image'
 import { useContext, useEffect } from 'react'
-import { SocketContext } from '../contexts/socketContext'
+
+import CentralWrapper from 'components/CentralWrapper'
+import PhoneInput from 'components/PhoneInput'
+
+import { SocketContext } from 'contexts/socketContext'
+
+import { phoneNumberAtom } from 'lib/jotai'
+import { ROUTES } from 'lib/Routes'
 
 // Renders a first page of the sign up flow
 // where the user is asked to enter their phone number

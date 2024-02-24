@@ -1,12 +1,15 @@
 import { Box } from '@mui/system'
-import { Channel } from '../lib/types'
-import ConversationChatInput from './ConversationChatInput'
-import { SocketContext } from '../contexts/socketContext'
-import { useContext, useEffect, useState } from 'react'
 import { useAtomValue } from 'jotai'
-import { selectedChannelIDAtom, userIDAtom } from '../lib/jotai'
-import ConversationHeader from './ConversationHeader'
-import ConversationChat from './ConversationChat'
+import { useContext, useEffect, useState } from 'react'
+
+import ConversationChat from 'components/ConversationChat'
+import ConversationChatInput from 'components/ConversationChatInput'
+import ConversationHeader from 'components/ConversationHeader'
+
+import { SocketContext } from 'contexts/socketContext'
+
+import { selectedChannelIDAtom, userIDAtom } from 'lib/jotai'
+import { Channel } from 'lib/types'
 
 type Props = {
   channel: Channel

@@ -1,13 +1,15 @@
-import Head from 'next/head'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import Image from 'next/image'
-import CentralWrapper from '../components/CentralWrapper'
-import { phoneNumberAtom } from '../lib/jotai'
 import { useAtomValue } from 'jotai'
-import BasicInput from '../components/BasicInput'
+import Head from 'next/head'
+import Image from 'next/image'
 import { useState } from 'react'
-import { ROUTES } from '../lib/Routes'
+
+import BasicInput from 'components/BasicInput'
+import CentralWrapper from 'components/CentralWrapper'
+
+import { phoneNumberAtom } from 'lib/jotai'
+import { ROUTES } from 'lib/Routes'
 
 const OTP_LENGTH = 6
 
@@ -20,7 +22,7 @@ export default function VerifyCodePage() {
 
   // Restrict the code input to 6 digits
   const handleOtpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOtp(e.target.value.substring(0, OTP_LENGTH))
+    setOtp(e.target.value.replace(/\D/g, '').substring(0, OTP_LENGTH))
   }
 
   return (

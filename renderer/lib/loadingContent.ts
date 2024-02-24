@@ -1,7 +1,7 @@
-import { Channels } from './types'
+import { Channels } from 'lib/types'
 
-export const loadingChannels: Channels = {
-  0: {
+export const skeletonChannels: Channels = {
+  '0': {
     isInDraft: false,
     isMultiUser: false,
     name: '0',
@@ -13,7 +13,7 @@ export const loadingChannels: Channels = {
 // populate the channels with loading messages
 // fon loading state
 Array.from({ length: 5 }).forEach((_, i) => {
-  loadingChannels[i] = {
+  skeletonChannels[i] = {
     isInDraft: false,
     isMultiUser: false,
     name: i.toString(),

@@ -1,9 +1,10 @@
 import { atomWithStorage } from 'jotai/utils'
-import { Users } from './types'
+
+import { Users } from 'lib/types'
 
 export const phoneNumberAtom = atomWithStorage<string | null>(
   'phoneNumber',
-  null
+  null,
 )
 
 export const nameAtom = atomWithStorage<string>('name', '')
@@ -14,7 +15,7 @@ export const userIDAtom = atomWithStorage<string | null>('userID', null)
 
 export const selectedChannelIDAtom = atomWithStorage<string | null>(
   'selectedChannelID',
-  '0'
+  null,
 )
 
 export const usersAtom = atomWithStorage<Users>('users', {})

@@ -1,21 +1,19 @@
-import Head from 'next/head'
+import { Box, CircularProgress } from '@mui/material'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import Image from 'next/image'
-import CentralWrapper from '../components/CentralWrapper'
-import {
-  lastNameAtom,
-  nameAtom,
-  phoneNumberAtom,
-  userIDAtom,
-} from '../lib/jotai'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
-import BasicInput from '../components/BasicInput'
-import { ROUTES } from '../lib/Routes'
-import { useContext, useState } from 'react'
-import { SocketContext } from '../contexts/socketContext'
+import Head from 'next/head'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Box, CircularProgress } from '@mui/material'
+import { useContext, useState } from 'react'
+
+import BasicInput from 'components/BasicInput'
+import CentralWrapper from 'components/CentralWrapper'
+
+import { SocketContext } from 'contexts/socketContext'
+
+import { lastNameAtom, nameAtom, phoneNumberAtom, userIDAtom } from 'lib/jotai'
+import { ROUTES } from 'lib/Routes'
 
 const MIN_NAME_LENGTH = 2
 
