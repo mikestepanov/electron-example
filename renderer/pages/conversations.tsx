@@ -68,6 +68,7 @@ export default function Conversations() {
           display: 'flex',
           flexDirection: 'row',
           height: '100vh',
+          width: '100%',
         }}
       >
         <SideBar

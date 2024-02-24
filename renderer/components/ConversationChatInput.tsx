@@ -5,7 +5,6 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import { blue } from '@mui/material/colors'
 import { Fab } from '@mui/material'
 import { useState } from 'react'
-import { send } from 'process'
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -60,12 +59,12 @@ export default function ConversationChatInput(props: Props) {
         display: 'flex',
         alignItems: 'center',
         width: '100%',
-        padding: '0 16px',
+        padding: '0 20px 0 50px',
         height: 60,
       }}
     >
       <BootstrapInput
-        sx={{ width: 'inherit' }}
+        sx={{ width: 'calc(100% - 120px)' }}
         placeholder="Message"
         value={value}
         onChange={(e) => {
@@ -74,7 +73,7 @@ export default function ConversationChatInput(props: Props) {
           setValue(val)
         }}
       />
-      <Box sx={{ width: 40 }}>
+      <Box sx={{ width: 20 }}>
         <Fab
           color="secondary"
           size="small"
@@ -82,7 +81,7 @@ export default function ConversationChatInput(props: Props) {
             background: blue[600],
             width: 36,
             height: 36,
-            marginLeft: 4,
+            marginLeft: '30px',
           }}
           disabled={value === '' || props.isLoading}
           onClick={() => sendMessage()}

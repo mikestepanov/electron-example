@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import Image from 'next/image'
 import EditIcon from '@mui/icons-material/Edit'
+import { blue } from '@mui/material/colors'
 
 // In the future we could add or edit conversations here
 export default function EditSection() {
@@ -54,7 +55,14 @@ export default function EditSection() {
           left: '280px',
         }}
       >
-        <Fab color="secondary" aria-label="edit" onClick={handleOpen}>
+        <Fab
+          color="secondary"
+          aria-label="edit"
+          onClick={handleOpen}
+          sx={{
+            background: blue[600],
+          }}
+        >
           <EditIcon />
         </Fab>
       </Box>

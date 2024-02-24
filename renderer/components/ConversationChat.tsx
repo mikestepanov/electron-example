@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { useAtomValue } from 'jotai'
 import { selectedChannelIDAtom, userIDAtom } from '../lib/jotai'
 import ChatTextbox from './ChatTextbox'
+import ConversationHeader from './ConversationHeader'
 
 type Props = {
   channel: Channel
@@ -34,15 +35,20 @@ export default function ConversationChat(props: Props) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        width: 'calc(100% - 420px)',
+        width: 'calc(100% - 360px)',
       }}
     >
       {/* TODO - adjust after testing */}
       <Box sx={{ height: 'calc(100% - 120px)' }}>
+        <ConversationHeader
+          channel={props.channel}
+          isLoading={props.isLoading}
+        />
         {props.channel.messages.map((message, index) => {
           return (
             <Box key={index}>
               <ChatTextbox
+                inMultiUserChannel={props.channel.isMultiUser}
                 message={message}
                 isFromCurrentUser={message.userID === userID}
                 isLoading={props.isLoading}
