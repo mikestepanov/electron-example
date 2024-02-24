@@ -1,11 +1,11 @@
 import { Channels } from 'lib/types'
 
 export const skeletonChannels: Channels = {
-  '0': {
+  skeleton: {
     isInDraft: false,
     isMultiUser: false,
     name: '0',
-    imageURL: '0',
+    imageURL: '/images/frost.jpg',
     messages: [],
   },
 }
@@ -17,7 +17,7 @@ Array.from({ length: 5 }).forEach((_, i) => {
     isInDraft: false,
     isMultiUser: false,
     name: i.toString(),
-    imageURL: i.toString(),
+    imageURL: '/images/frost.jpg',
     messages: [],
   }
 })

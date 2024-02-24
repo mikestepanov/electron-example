@@ -9,7 +9,7 @@ import SideBar from 'components/SideBar'
 import { SocketContext } from 'contexts/socketContext'
 
 import { selectedChannelIDAtom, usersAtom } from 'lib/jotai'
-import { skeletonChannels } from 'lib/loadingContent'
+import { skeletonChannels } from 'lib/skeletonContent'
 import { Channel, Channels, Users } from 'lib/types'
 
 // Renders a page where the user can see their conversations
@@ -28,7 +28,7 @@ export default function Conversations() {
   const selectedChannel =
     selectedChannelID != null && channels.hasOwnProperty(selectedChannelID)
       ? channels[selectedChannelID]
-      : skeletonChannels[0]
+      : skeletonChannels['skeleton']
 
   // when the server sends the conversations and users, we set them in the state
   socket?.on(
