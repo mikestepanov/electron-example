@@ -31,7 +31,7 @@ export default function SideBarItem(props: Props) {
     message = 'You: ' + message
     // in multi user channels, append the author's name to the message
   } else if (props.channel.isMultiUser) {
-    message = messageAuthor.name + ': ' + message
+    message = (messageAuthor?.name || '') + ': ' + message
   }
 
   return (
@@ -62,6 +62,7 @@ export default function SideBarItem(props: Props) {
             secondary={message}
             secondaryTypographyProps={{
               color: props.isSelected ? 'white' : 'black',
+              noWrap: true,
             }}
           />
         )}

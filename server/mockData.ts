@@ -5,7 +5,7 @@ exports.mockUsers = {
     phoneNumber: '123-456-7890',
     imageURL: '/images/gwyn.jpg',
   },
-  '124': {
+  VEGETA_USER_ID: {
     name: 'Prince Vegeta',
     lastName: 'the IV',
     phoneNumber: '123-456-7891',
@@ -34,7 +34,7 @@ exports.mockChannels = {
     messages: [
       {
         id: '2002',
-        userID: '124',
+        userID: 'VEGETA_USER_ID',
         content: "It's over 9000!",
         timestamp: '2024-02-23T08:01:00Z',
       },
