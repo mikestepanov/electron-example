@@ -1,6 +1,6 @@
 1. I created a nextron app (Electron.js with integrated Next.js) with MUI library as a starting set up
    - Next is a React framework that provides advanced routing
-   - MUI is a Material Design UI library that uses Emotion.js JSS (JS-in-CSS) for styling
+   - MUI is a Material Design UI library that uses Emotion.js JSS (JS-in-CSS) for styling, could be very Tailwind-like
 2. Added Jotai for state management - (light lib with hooks). Redux has 1 object for the entire state, Jotai breaks state into separate instances (they are called atoms) - each atom is responsible for its own element
 
 3) home (starting) page is located [here](renderer/pages/home.tsx)
@@ -19,10 +19,12 @@
 7) On last page of the onboarding, the client will emit user data with `creatingNewUser` to the server:
    - In response, the server will emit new users ID with `newUserCrated`, this will be our placebo 'auth token'
    - all messages from that user will be authored from that ID (aside from preestablished and convo ones)
+   - server will delay `newUserCrated` for 2 seconds
 8) After the onboarding, the user is redirected to conversations page
    - client emits `requestConversationsAndUsers`, loading mock starts
    - server emits in response `recieveConversationsAndUsers`, sends all users and all conversations
    - in the users array there should be our current user as well
+   - the server will delay `recieveConversationsAndUsers` for 2 seconds
 9) In the example the first conversation (a conversation with character Vegeta):
    - 0th messaged comes from Vegeta (to show chat activity)
    - A chat is automatically created with an imaginary user.
@@ -34,8 +36,10 @@
      - If last message is from the user, 'You: ' is appended to the message preview
      - the chat has DMed user image and name and is unchanging
 10) user sends a message by emitting `sendMessage`, the server responds with updated conversation back via `channelUpdate`
+    - the server will delay `channelUpdate` for a new message for 2 seconds
 11) user can send `isDrafting` when typing into the message input, the server responds with `channelUpdate`, labeling the conversation as in draft mode
     - this will show loading (`...`) logic on client
+    - the server will delay `channelUpdate` for draft mode for 1 second
 
 12. as a bonus, I added multi user view in the second conversation, similar to single user chat with minor changes
     - Character's first name is apppended to the message preview

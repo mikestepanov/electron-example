@@ -26,7 +26,7 @@ export default function ChatTextbox(props: Props) {
       ? users[props.message.userID]?.imageURL
       : null
 
-  const marginLeftForOtherUser = props.inMultiUserChannel ? '10px' : '20px'
+  const marginLeftForOtherUser = props.inMultiUserChannel ? '10px' : '0'
 
   return (
     <Box
@@ -35,7 +35,7 @@ export default function ChatTextbox(props: Props) {
       }}
     >
       {props.inMultiUserChannel && props.isFromCurrentUser === false && (
-        <Box sx={{ marginLeft: '60px' }}>
+        <Box sx={{ marginLeft: '70px' }}>
           <Typography fontWeight="bold">
             {users[props.message.userID]?.name +
               ' ' +
@@ -47,7 +47,7 @@ export default function ChatTextbox(props: Props) {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          marginLeft: '10px',
+          marginLeft: '20px',
         }}
       >
         {avatarUrl != null && (
@@ -62,7 +62,7 @@ export default function ChatTextbox(props: Props) {
             marginLeft: props.isFromCurrentUser
               ? 'auto'
               : marginLeftForOtherUser,
-            marginRight: props.isFromCurrentUser ? '20px' : 'auto',
+            marginRight: props.isFromCurrentUser ? '40px' : 'auto',
             width: 'fit-content',
             maxWidth: '40%',
             position: 'relative',

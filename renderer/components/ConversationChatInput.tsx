@@ -64,7 +64,7 @@ export default function ConversationChatInput(props: Props) {
       }}
     >
       <BootstrapInput
-        sx={{ width: 'calc(100% - 120px)' }}
+        sx={{ width: 'calc(100% - 80px)' }}
         placeholder="Message"
         value={value}
         onChange={(e) => {

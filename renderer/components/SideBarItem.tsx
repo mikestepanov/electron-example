@@ -23,11 +23,11 @@ export default function SideBarItem(props: Props) {
 
   const latestMessage =
     props.channel.messages[props.channel.messages.length - 1]
-  const messageAuthor = users[latestMessage.userID]
+  const messageAuthor = users[latestMessage?.userID]
 
-  let message = latestMessage.content
+  let message = latestMessage?.content
   // if the latest message is from the current user, append "You" to the message
-  if (latestMessage.userID === currenUserID) {
+  if (latestMessage?.userID === currenUserID) {
     message = 'You: ' + message
     // in multi user channels, append the author's name to the message
   } else if (props.channel.isMultiUser) {

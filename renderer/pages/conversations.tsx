@@ -1,14 +1,12 @@
 import Head from 'next/head'
-import Typography from '@mui/material/Typography'
-import Link from '../components/Link'
 import SideBar from '../components/SideBar'
 import ConversationChat from '../components/ConversationChat'
 import { Box } from '@mui/system'
 import { SocketContext } from '../contexts/socketContext'
 import { useContext, useEffect, useState } from 'react'
 import { Channel, Channels, Users } from '../lib/types'
-import { useAtom } from 'jotai'
-import { selectedChannelIDAtom, usersAtom } from '../lib/jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { selectedChannelIDAtom, userIDAtom, usersAtom } from '../lib/jotai'
 import { loadingChannels } from '../lib/loadingContent'
 
 // Renders a page where the user can see their conversations
@@ -16,7 +14,7 @@ import { loadingChannels } from '../lib/loadingContent'
 export default function Conversations() {
   const socket = useContext(SocketContext)
 
-  const [users, setUsers] = useAtom(usersAtom)
+  const setUsers = useSetAtom(usersAtom)
   const [channels, setChannels] = useState<Channels>({})
   const [isLoading, setIsLoading] = useState(false)
   const [selectedChannelID, setSelectedChannelID] = useAtom(
@@ -50,19 +48,11 @@ export default function Conversations() {
     setIsLoading(true)
   }, [])
 
-  console.log('users', users)
-  console.log('channels', channels)
-  console.log('isLoading', isLoading)
-
   return (
     <>
       <Head>
         <title>Conversations</title>
       </Head>
-      {/*TODO - for testing to remove later */}
-      <Typography gutterBottom>
-        <Link href="/home">Go to the home page</Link>
-      </Typography>
       <Box
         sx={{
           display: 'flex',

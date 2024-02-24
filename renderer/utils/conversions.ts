@@ -1,3 +1,5 @@
+// converts a timestamp to a AM/PM format
+// example: 2021-08-25T18:00:00.000Z => 6:00 PM
 export function convertToAMPM(timestamp: string) {
   const date = new Date(timestamp)
   let hours = date.getHours()

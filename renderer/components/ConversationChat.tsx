@@ -7,7 +7,7 @@ import { useAtomValue } from 'jotai'
 import { selectedChannelIDAtom, userIDAtom } from '../lib/jotai'
 import ChatTextbox from './ChatTextbox'
 import ConversationHeader from './ConversationHeader'
-import Dots from './Dots'
+import SomeoneIsTyping from './SomeoneIsTyping'
 
 type Props = {
   channel: Channel
@@ -24,6 +24,7 @@ export default function ConversationChat(props: Props) {
 
   // sends a message to the server to the selected channel
   const handleSendMessage = (content: string) => {
+    setIsTyping(false)
     socket?.emit('sendMessage', {
       userID: userID,
       channelID: selectedChannelID,
@@ -50,44 +51,47 @@ export default function ConversationChat(props: Props) {
         width: 'calc(100% - 360px)',
       }}
     >
-      {/* TODO - adjust after testing */}
-      <Box sx={{ height: 'calc(100% - 120px)' }}>
+      <Box
+        sx={{
+          height: 'calc(100% - 80px)',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <ConversationHeader
           channel={props.channel}
           isLoading={props.isLoading}
         />
         {props.channel.messages.map((message, index) => {
           return (
-            <Box key={index}>
-              <ChatTextbox
-                inMultiUserChannel={props.channel.isMultiUser}
-                message={message}
-                isFromCurrentUser={message.userID === userID}
-                isLoading={props.isLoading}
-              />
-            </Box>
+            <ChatTextbox
+              key={index}
+              inMultiUserChannel={props.channel.isMultiUser}
+              message={message}
+              isFromCurrentUser={message.userID === userID}
+              isLoading={props.isLoading}
+            />
           )
         })}
-      </Box>
-      <Box>
         {props.channel.isInDraft && (
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'center',
+              justifyContent: 'flex-end',
+              marginRight: '60px',
               alignItems: 'center',
               height: '100px',
             }}
           >
-            <Dots />
+            <SomeoneIsTyping />
           </Box>
         )}
-        <ConversationChatInput
-          isLoading={props.isLoading}
-          onTyping={setIsTyping}
-          onSendMessage={handleSendMessage}
-        />
       </Box>
+      <ConversationChatInput
+        isLoading={props.isLoading}
+        onTyping={setIsTyping}
+        onSendMessage={handleSendMessage}
+      />
     </Box>
   )
 }

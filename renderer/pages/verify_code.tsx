@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import Link from '../components/Link'
 import Image from 'next/image'
 import CentralWrapper from '../components/CentralWrapper'
 import { phoneNumberAtom } from '../lib/jotai'
@@ -38,22 +37,23 @@ export default function VerifyCodePage() {
           objectFit="scale-down"
           priority
         />
-        <Typography fontWeight="bold" alignSelf="center">
+        <Typography
+          fontWeight="bold"
+          alignSelf="center"
+          sx={{ marginTop: '16px' }}
+        >
           {`+1 ${phoneNumber}`}
         </Typography>
-        <Typography gutterBottom variant="caption">
+        <Typography gutterBottom variant="caption" sx={{ margin: '16px 0' }}>
           We sent you an SMS with the code
         </Typography>
         <BasicInput placeholder="Code" value={otp} onChange={handleOtpChange} />
-        {/*TODO - for testing to remove later */}
-        <Typography gutterBottom>
-          <Link href="/home">Go to the home page</Link>
-        </Typography>
         <Button
           variant="contained"
           disabled={otp.length !== OTP_LENGTH}
           color="primary"
           href={ROUTES.NAME_INFO}
+          sx={{ marginTop: '16px' }}
         >
           Next
         </Button>

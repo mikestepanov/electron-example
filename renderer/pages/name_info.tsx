@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import Link from '../components/Link'
 import Image from 'next/image'
 import CentralWrapper from '../components/CentralWrapper'
 import {
@@ -16,7 +15,7 @@ import { ROUTES } from '../lib/Routes'
 import { useContext, useState } from 'react'
 import { SocketContext } from '../contexts/socketContext'
 import { useRouter } from 'next/router'
-import { CircularProgress } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 
 const MIN_NAME_LENGTH = 2
 
@@ -42,7 +41,6 @@ export default function NameInfoPage() {
   // it will be the user id and will act as our 'auth token'
   socket?.on('newUserCrated', (userID: string) => {
     setUserID(userID)
-    setIsLoading(false)
     router.push(ROUTES.CONVERSATIONS)
   })
 
@@ -71,7 +69,11 @@ export default function NameInfoPage() {
           objectFit="scale-down"
           priority
         />
-        <Typography fontWeight="bold" alignSelf="center">
+        <Typography
+          fontWeight="bold"
+          alignSelf="center"
+          sx={{ margin: '16px 0' }}
+        >
           What's your Full Name?
         </Typography>
         <BasicInput
@@ -79,15 +81,13 @@ export default function NameInfoPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <BasicInput
-          placeholder="Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        {/*TODO - for testing to remove later */}
-        <Typography gutterBottom>
-          <Link href="/home">Go to the home page</Link>
-        </Typography>
+        <Box sx={{ marginTop: '16px' }}>
+          <BasicInput
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </Box>
         <Button
           startIcon={
             isLoading ? <CircularProgress size={15} color="inherit" /> : null
@@ -96,6 +96,7 @@ export default function NameInfoPage() {
           color="primary"
           disabled={canSubmit === false}
           onClick={handleCreateNewUser}
+          sx={{ marginTop: '16px' }}
         >
           {isLoading ? 'Creating New User...' : 'Next'}
         </Button>
