@@ -30,9 +30,6 @@ const io = new Server(server, {
 })
 
 io.on('connection', (socket: typeof Socket) => {
-  console.log('a user has made a connection from client')
-  socket.emit('confirm', 'Hello from server')
-
   // on loading conversations page, client requests for users and channels
   socket.on('requestConversationsAndUsers', () => {
     setTimeout(function () {
@@ -62,12 +59,9 @@ io.on('connection', (socket: typeof Socket) => {
 
     const channel = channels[channelID]
     // this is to harcode check based on the requested criteria
-    const isMultiUser = channel.isMultiUser
     // flip as if `Vegeta` is sending the message
     const finalizedHarcodedID =
-      isMultiUser === false && channel.messages.length % 2 === 0
-        ? 'VEGETA_USER_ID'
-        : userID
+      channel.messages.length % 2 === 0 ? 'VEGETA_USER_ID' : userID
     channel.messages.push({
       id: new Date().getTime().toString(),
       userID: finalizedHarcodedID,
@@ -105,7 +99,6 @@ io.on('connection', (socket: typeof Socket) => {
       const channel = channels[channelID]
       channel.isInDraft = false
     })
-    console.log('user disconnected')
   })
 })
 

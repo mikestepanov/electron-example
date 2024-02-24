@@ -25,10 +25,6 @@ export default function MyApp(props: MyAppProps) {
   // server/index.ts
   const socket = io('ws://localhost:3333')
 
-  socket.on('confirm', (data) => {
-    console.log('connection from server established: ', data)
-  })
-
   return (
     <CacheProvider value={emotionCache}>
       <Head>

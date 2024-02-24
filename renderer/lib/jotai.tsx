@@ -14,7 +14,7 @@ export const userIDAtom = atomWithStorage<string | null>('userID', null)
 
 export const selectedChannelIDAtom = atomWithStorage<string | null>(
   'selectedChannelID',
-  null
+  '0'
 )
 
 export const usersAtom = atomWithStorage<Users>('users', {})

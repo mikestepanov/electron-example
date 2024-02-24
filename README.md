@@ -45,6 +45,8 @@
     - Character's first name is apppended to the message preview
     - in the conversation view, non-current user's messages show name and image
 
+13) Add animation so that the table moves up as message bubbles come in conversation
+
 ### Install Dependencies
 
 ```

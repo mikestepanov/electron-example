@@ -24,6 +24,7 @@ export default function SideBar(props: Props) {
         flexDirection: 'column',
         minWidth: 360,
         backgroundColor: grey[400],
+        overflowY: 'auto',
       }}
     >
       <Box sx={{ width: '100%', maxWidth: 360 }}>

@@ -23,7 +23,7 @@ export default function ConversationHeader(props: Props) {
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%',
-        height: '72px',
+        minHeight: '72px',
       }}
     >
       <Box

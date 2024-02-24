@@ -38,6 +38,7 @@ export default function SideBarItem(props: Props) {
     <Box
       sx={{
         bgcolor: props.isSelected ? blue[600] : grey[300],
+        height: '72px',
       }}
     >
       <ListItemButton selected={props.isSelected} onClick={props.onClick}>

@@ -26,7 +26,7 @@ exports.mockUsers = {
 }
 
 exports.mockChannels = {
-  '2000': {
+  '0': {
     isGettingNewComment: false,
     isMultiUser: false,
     name: 'Prince Vegeta the IV',
@@ -40,7 +40,7 @@ exports.mockChannels = {
       },
     ],
   },
-  '3000': {
+  '1': {
     isGettingNewComment: false,
     isMultiUser: true,
     name: "Gwyn's Chill Chat",

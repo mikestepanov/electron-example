@@ -1,6 +1,6 @@
 import { Box } from '@mui/system'
 import { Message } from '../lib/types'
-import { Avatar, Skeleton, Typography } from '@mui/material'
+import { Avatar, Typography } from '@mui/material'
 import { blue, grey } from '@mui/material/colors'
 import { convertToAMPM } from '../utils/conversions'
 import { useAtomValue } from 'jotai'
@@ -8,7 +8,6 @@ import { usersAtom } from '../lib/jotai'
 
 type Props = {
   message: Message
-  isLoading: boolean
   isFromCurrentUser: boolean
   inMultiUserChannel: boolean
 }
@@ -20,9 +19,7 @@ export default function ChatTextbox(props: Props) {
   // only show the avatar if the message is from another user
   // and the comversation is a multi-user comversation
   const avatarUrl =
-    props.isFromCurrentUser === false &&
-    props.isLoading === false &&
-    props.inMultiUserChannel === true
+    props.isFromCurrentUser === false && props.inMultiUserChannel === true
       ? users[props.message.userID]?.imageURL
       : null
 
@@ -65,14 +62,11 @@ export default function ChatTextbox(props: Props) {
             marginRight: props.isFromCurrentUser ? '40px' : 'auto',
             width: 'fit-content',
             maxWidth: '40%',
+            minWidth: '50px',
             position: 'relative',
           }}
         >
-          {props.isLoading ? (
-            <Skeleton variant="rectangular" width={300} height={30} />
-          ) : (
-            <Typography>{props.message.content}</Typography>
-          )}
+          <Typography>{props.message.content}</Typography>
           <Typography
             sx={{
               position: 'absolute',
@@ -82,11 +76,7 @@ export default function ChatTextbox(props: Props) {
               color: props.isFromCurrentUser ? 'white' : 'black',
             }}
           >
-            {props.isLoading ? (
-              <Skeleton variant="text" width={40} />
-            ) : (
-              <>{convertToAMPM(props.message.timestamp)}</>
-            )}
+            <>{convertToAMPM(props.message.timestamp)}</>
           </Typography>
         </Box>
       </Box>
