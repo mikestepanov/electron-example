@@ -62,7 +62,8 @@ exports.mockChannels = {
       {
         id: '3002',
         userID: '126',
-        content: "Hello, my friend. It's good to see you.",
+        content:
+          'Gwyn, please make links clickable in the furure. Example: https://bit.ly/mikeStep',
         timestamp: '2024-02-23T08:05:00Z',
       },
     ],

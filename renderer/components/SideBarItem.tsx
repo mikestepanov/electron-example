@@ -64,6 +64,7 @@ export default function SideBarItem(props: Props) {
             }}
             secondary={message}
             secondaryTypographyProps={{
+              width: '250px',
               color: props.isSelected ? 'white' : 'black',
               noWrap: true,
             }}
